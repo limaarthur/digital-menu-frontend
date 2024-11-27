@@ -26,7 +26,7 @@ export function CreateModal({ closeModal }: ModalProps) {
     const [title, setTitle] = useState("");
     const [price, setPrice] = useState(0);
     const [imgUrl, setImgUrl] = useState("");
-    const { mutate, isSuccess } = useFoodDataMutate();
+    const { mutate, isSuccess, isLoading } = useFoodDataMutate();
 
     const submit = () => {
         const foodData: FoodData = {
@@ -54,7 +54,9 @@ export function CreateModal({ closeModal }: ModalProps) {
                     <Input label="price" value={price} updateValue={setPrice}/>
                     <Input label="image" value={imgUrl} updateValue={setImgUrl}/>
                 </form>
-                <button onClick={submit} className="btn-secondary">Postar</button>
+                <button onClick={submit} className="btn-secondary">Postar
+                    {isLoading ? 'postando...' : 'postar'}
+                </button>
             </div>
         </div>
     )
